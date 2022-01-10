@@ -2,6 +2,18 @@
 
 class Solution:
     
+    def is_safe(self, i, j, m):
+        if i >= self.rows or i < 0 or j >= self.cols or j < 0:
+            return False
+        
+        if m[i][j] == 0:
+            return False
+        
+        if self.visited[i][j]:
+            return False
+        
+        return True
+    
     def solve(self, m, n, i, j, path):
         
         #if len(path) > 2:
@@ -10,18 +22,14 @@ class Solution:
         moves = [(0, 1, 'R'), (0, -1, 'L'), (1, 0, 'D'), (-1, 0, 'U')]
         #print(i,j)
         
-        if i >= self.rows or i < 0 or j >= self.cols or j < 0:
-            return
-        
-        if m[i][j] == 0 or self.visited[i][j]:
-            return
-        
         if i == self.rows - 1 and j == self.cols - 1:
             self.res.append("".join(path))
         
         self.visited[i][j] = True
         
         for move in moves:
+            if not self.is_safe(i + move[0], j + move[1], m):
+                continue
             path.append(move[2])
             self.solve(m, n, i + move[0], j + move[1], path)
             path.pop()
