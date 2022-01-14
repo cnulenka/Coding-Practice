@@ -19,8 +19,7 @@ class BSTIterator:
 
     def next(self) -> int:
         
-        node = self.stack[-1]
-        self.stack.pop()
+        node = self.stack.pop()
         
         self._left_most_node(node.right)
         
