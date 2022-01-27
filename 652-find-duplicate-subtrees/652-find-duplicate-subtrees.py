@@ -25,7 +25,6 @@ class Solution:
             
             right_hash = map_subtrees(root.right)
             
-            #print(delimeter, str(root.val), left_hash, right_hash)
             hash_str = delimeter + str(root.val) + left_hash + right_hash
             
             if hash_str in dict_map:
