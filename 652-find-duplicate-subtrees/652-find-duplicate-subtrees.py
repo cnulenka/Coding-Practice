@@ -6,15 +6,15 @@
 #         self.right = right
 class Solution:
     def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
-        
-        dict_map = {}
+        from collections import defaultdict
+        dict_map = defaultdict(int)
         delimeter = '$'
+        dup_hash = []
         
         
         def map_subtrees(root):
             
-            nonlocal dict_map
-            nonlocal delimeter
+            nonlocal dict_map, delimeter, dup_hash
             
             if root is None:
                 return delimeter
@@ -27,23 +27,14 @@ class Solution:
             
             hash_str = delimeter + str(root.val) + left_hash + right_hash
             
-            if hash_str in dict_map:
-                dict_map[hash_str][0] += 1
-            else:
-                dict_map[hash_str] = [1, root]
+            dict_map[hash_str] += 1
+            if dict_map[hash_str] == 2:
+                dup_hash.append(root)
                 
             
             return hash_str
         
         
         map_subtrees(root)
-        dup_hash = []
-        for k,v in dict_map.items():
-            if v[0] > 1:
-                dup_hash.append(v[1])
-        #import re
-        #for i,v in enumerate(dup_hash):
-        #    dup_hash[i] = dup_hash[i].strip('$')
-        #    dup_hash[i] = list(map(int, re.split(r'\$+', dup_hash[i])))
         
         return dup_hash
