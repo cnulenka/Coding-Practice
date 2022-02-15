@@ -18,7 +18,7 @@ class Solution:
             if (mid == 0 or nums[mid] < nums[mid - 1]) and (mid==len(nums)-1 or nums[mid] < nums[mid+1]):
                 return nums[mid]
             else:
-                print("hola")
+                #print("hola")
                 if nums[mid] >= nums[0] and nums[mid] >= nums[-1]:
                     #print("hola1")
                     start = mid + 1
