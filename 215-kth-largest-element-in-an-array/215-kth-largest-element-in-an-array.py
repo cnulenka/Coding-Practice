@@ -16,6 +16,9 @@ class Solution:
         
         def select(left, right, k):
             
+            if left == right:      
+                return nums[left] 
+            
             partiton_index = partition(left, right)
             
             if partiton_index == k:
