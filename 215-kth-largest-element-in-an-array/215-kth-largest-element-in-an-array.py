@@ -2,6 +2,8 @@ class Solution:
     def findKthLargest(self, nums, k):
 
         def partition(left, right):
+            pivot = random.randint(left, right) 
+            nums[pivot], nums[right] = nums[right], nums[pivot]
             
             pivot_index = left
             
