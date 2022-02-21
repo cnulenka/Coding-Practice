@@ -27,22 +27,12 @@ class LRUCache:
     
     def delete_from_tail(self):
         del_node = self.tail.prev
-        temp = del_node.prev
-        
+        self.delete_node(del_node)
         self.cache.pop(del_node.key)
-        
         del del_node
         
-        temp.next = self.tail
-        self.tail.prev = temp
-        
     def move_to_head(self, node):
-        prev = node.prev
-        nextt = node.next
-        
-        prev.next = nextt
-        nextt.prev = prev
-        
+        self.delete_node(node)
         self.insert_at_head(node)
         
 
@@ -54,6 +44,13 @@ class LRUCache:
             return node.val
         
         return -1
+    
+    def delete_node(self, node):
+        prev = node.prev
+        nextt = node.next
+        
+        prev.next = nextt
+        nextt.prev = prev
     
     def add_node(self, key, value):
         node = DLL()
