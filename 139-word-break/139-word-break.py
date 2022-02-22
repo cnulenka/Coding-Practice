@@ -14,7 +14,7 @@ class Solution:
             
             for end in range(start+1, len(s)+1):
                 if s[start:end] in wordDict:
-                    print(start, end)
+                    #print(start, end)
                     #if not visited[end]:
                     q.append(end)
                     
