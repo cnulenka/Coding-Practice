@@ -30,7 +30,7 @@ class Solution(object):
         courseDict = defaultdict(list)
 
         for relation in prerequisites:
-            courseDict[relation[0]].append(relation[1])
+            courseDict[relation[1]].append(relation[0])
             
         checked = [False] * numCourses
         path = [False] * numCourses
