@@ -24,12 +24,11 @@ class Solution:
         q = collections.deque()
         q.append((1, 0))
         visited = set()
-        #moves = 0[[-1,-1],[-1,3]]
-        
+        moves = 0
         while q:
             #print(q)
             for i in range(len(q)):              
-                pos, moves = q.popleft()
+                pos, m = q.popleft()
                 
                 x, y = num_to_loc(pos)
                 
@@ -44,8 +43,8 @@ class Solution:
                     next_pos = pos + j
                     if next_pos <= n*n and next_pos not in visited:
                         visited.add(next_pos)
-                        q.append((next_pos, moves+1))
-            #moves += 1
+                        q.append((next_pos, m+1))
+            moves += 1
         return -1
             
         
