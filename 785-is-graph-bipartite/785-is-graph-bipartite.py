@@ -6,7 +6,7 @@ class Solution:
         for node in range(len(graph)):
             if node not in color:
                 q = collections.deque([node])
-                color[node] = node
+                color[node] = 0
                 while q :
                     node = q.popleft()
                     for neig in graph[node]:
