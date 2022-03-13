@@ -10,21 +10,19 @@ class Solution:
         for i in range(k):
             temp_list.append(li[i])
         
-        heapq.heapify(temp_list)
+        heapq.heapify(temp_list) # O(k)
         
-        for i in range(k, n):
-            top = heapq.heappop(temp_list)
-            if li[i] > top:
+        for i in range(k, n): # O(n * logk)
+            if li[i] > temp_list[0]:
+                heapq.heappop(temp_list)
                 heapq.heappush(temp_list, li[i])
-            else:
-                heapq.heappush(temp_list, top)
         
         res = []
         
-        while temp_list:
+        while temp_list: # O(klogk)
             res.append(heapq.heappop(temp_list))
         
-        res.reverse()
+        res.reverse() # O(k)
         return res
          
 
