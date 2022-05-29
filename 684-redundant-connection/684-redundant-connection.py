@@ -14,11 +14,10 @@ class DSU:
             return False
         if self.rank[xp] > self.rank[yp]:
             self.parent[yp] = xp
-        elif self.rank[xp] < self.rank[yp]:
+        elif self.rank[xp] <= self.rank[yp]:
             self.parent[xp] = yp
-        else:
-            self.parent[xp] = yp
-            self.rank[yp] += 1
+            if self.rank[xp] == self.rank[yp]:
+                self.rank[yp] += 1
         return True
 
 class Solution:
