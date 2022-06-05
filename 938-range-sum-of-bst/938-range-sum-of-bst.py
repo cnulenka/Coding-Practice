@@ -16,11 +16,9 @@ class Solution:
             if low <= root.val <= high:
                 ans += root.val
             
-            if low < root.val:
-                get_sum(root.left)
+            get_sum(root.left)
             
-            if high > root.val:
-                get_sum(root.right)
+            get_sum(root.right)
         
         ans = 0
         get_sum(root)
