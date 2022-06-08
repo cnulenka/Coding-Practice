@@ -11,17 +11,10 @@ class Solution:
         freq[s[0]] = 0
         
         for i in range(1, len(s)):
-            if s[i] in freq and freq[s[i]] != -1:
-                while left < freq[s[i]]:
-                    freq[s[left]] = -1
-                    left += 1
-                    
-                left = freq[s[i]] + 1
+            if s[i] in freq:
+                left = max(left, freq[s[i]] + 1)
             
             max_length = max(max_length, i - left + 1)
-            # print(max_length)
-            # print(i - left + 1)
-            # print("********")
             freq[s[i]] = i
         
         return max_length
