@@ -14,7 +14,5 @@ class Solution:
             return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
         elif root.left:
             return self.minDepth(root.left) + 1
-        elif root.right:
-            return self.minDepth(root.right) + 1
         else:
-            return 1
+            return self.minDepth(root.right) + 1
