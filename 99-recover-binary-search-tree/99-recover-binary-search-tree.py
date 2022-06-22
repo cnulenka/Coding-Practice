@@ -20,7 +20,7 @@ class Solution:
                 root = root.left
             root = stack.pop()
             
-            while pred and pred.val > root.val:
+            if pred and pred.val > root.val:
                 y = root
                 if x is None:
                     x = pred
