@@ -3,21 +3,33 @@ class Solution:
         n = len(nums)
         dp = {}
         def solve(i, curr_sum):
-            nonlocal n
-            if i == n:
-                if curr_sum == target:
-                    return 1
+            #print(i, curr_sum)
+            nonlocal target_sum
+            
+            if curr_sum > target_sum:
                 return 0
             
-            if (i, curr_sum) in dp:
+            if i == n:
+                if curr_sum == target_sum:
+                    return 1
+                else:
+                    return 0
+            
+            if (i,curr_sum) in dp:
                 return dp[(i,curr_sum)]
+                
+            incl = solve(i+1, curr_sum + nums[i])
+            excl = solve(i+1, curr_sum)
             
-            add = solve(i+1, curr_sum+nums[i])
-            sub = solve(i+1, curr_sum-nums[i])
-            
-            dp[(i,curr_sum)] = add + sub
+            dp[(i,curr_sum)] = incl + excl
             
             return dp[(i,curr_sum)]
         
+        ts = sum(nums)
+        if (ts+target) %2 !=0:
+            return 0
+        target_sum = (ts+target)//2
+        #print(target_sum)
+        #print(dp)
         return solve(0, 0)
             
