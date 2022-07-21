@@ -9,15 +9,14 @@ class Solution:
         for k,v in freq.items():
             arr[k] = k*v
             
-        max_gain = 0
-        excl = 0
-        incl = arr[0]
+        n = len(arr)
+        rob_next_plus_one = 0
+        rob_next = arr[n-1]
         
-        for i in range(1, len(arr)):
-            temp = incl
-            incl = excl+arr[i]
-            excl = max(temp, excl)
+        for i in range(n-2, -1, -1):
+            curr = max(rob_next, rob_next_plus_one+arr[i])
             
-            max_gain = max(max_gain, max(excl, incl))
+            rob_next_plus_one = rob_next
+            rob_next = curr
             
-        return max_gain
+        return rob_next
