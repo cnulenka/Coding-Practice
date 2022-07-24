@@ -1,18 +1,19 @@
 class Solution:
     def longestConsecutive(self, nums):
-        longest_streak = 0
-        num_set = set(nums)
+        s = set(nums)
+        res = 0
         
-        for num in nums:
-            if num - 1 not in num_set:
-                current_num = num
-                current_streak = 1
+        for num in s:
+            curr_streak = 1
+            if num - 1 not in s:
                 
-                while current_num + 1 in num_set:
-                    current_num += 1
-                    current_streak += 1
+                while num + 1 in s:
+                    curr_streak += 1
+                    num = num + 1 
                 
-                longest_streak = max(current_streak, longest_streak)
+                res = max(curr_streak, res)
         
         
-        return longest_streak
+        return res
+        
+        
