@@ -1,26 +1,25 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         
-        results = []
-        
-        def backtrack(comb, remain, start):
+        res = []
+        def solve(curr_index, curr_sum, combination):
             
-            if remain == 0:
-                results.append(list(comb))
-            
-            if remain < 0:
+            if curr_sum == target:
+                #print(combination)
+                #print(curr_sum)
+                res.append(copy.deepcopy(combination))
+                return
+                
+            if curr_sum > target:
                 return
             
+            if curr_index < 0:
+                return
             
-            for i in range(start, len(candidates)):
-                comb.append(candidates[i])
-                
-                backtrack(comb, remain - candidates[i], i)
-                
-                comb.pop()
+            solve(curr_index - 1, curr_sum, combination) # exclude
+            combination.append(candidates[curr_index])
+            solve(curr_index, curr_sum + candidates[curr_index], combination) # include
+            combination.pop()
         
-        
-        backtrack([], target, 0)
-        
-        
-        return results
+        solve(len(candidates) - 1, 0, list())
+        return res
