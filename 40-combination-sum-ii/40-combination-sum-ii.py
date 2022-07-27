@@ -18,8 +18,8 @@ class Solution:
                     continue
                 
                 # sorted hence this optimazation can be done. CATCH
-                # if remain - candidates[i] < 0:
-                #     break
+                if remain - candidates[i] < 0:
+                    break
                 comb.append(candidates[i])
                 
                 backtrack(comb, remain - candidates[i], i+1)
