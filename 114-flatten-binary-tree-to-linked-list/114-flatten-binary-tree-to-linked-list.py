@@ -1,21 +1,27 @@
 class Solution:
-    def flatten(self, root: TreeNode) -> None:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        # pre order, root left right
+        
         if not root:
-            return None
+            return 
         
         stack = [root]
         prev = None
-        
         while stack:
+            root = stack[-1]
+            stack.pop()
             
-            node = stack.pop()
-            if node:
-                stack.append(node.right)
-                stack.append(node.left)
-                
-                if prev:
-                    prev.right = node
-                    prev.left = None
-                    node.left = None
+            if prev:
+                prev.right = root
             
-                prev = node
+            if root.right:
+                stack.append(root.right)
+            if root.left:
+                stack.append(root.left)
+                root.left = None
+            
+            prev = root
+            
