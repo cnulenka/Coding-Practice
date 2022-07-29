@@ -16,15 +16,10 @@ class Solution:
                     if obstacleGrid[i][j] == 1:
                         obstacleGrid[i][j] = 0
                     else:
-                        from_right = 0
-                        if j+1 < ncols and obstacleGrid[i][j+1] != -1:
-                                from_right = obstacleGrid[i][j+1]
+                        if j+1 < ncols:
+                                obstacleGrid[i][j] += obstacleGrid[i][j+1]
                         
-                        from_left = 0
-                        if i+1 < nrows and obstacleGrid[i+1][j] != -1:
-                                from_left = obstacleGrid[i+1][j]
-                        
-                        obstacleGrid[i][j] += from_right + from_left
-        
-        
+                        if i+1 < nrows:
+                                obstacleGrid[i][j] += obstacleGrid[i+1][j]
+                    
         return obstacleGrid[0][0]
