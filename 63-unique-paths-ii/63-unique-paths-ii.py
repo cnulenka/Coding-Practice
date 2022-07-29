@@ -14,7 +14,7 @@ class Solution:
                     obstacleGrid[nrows - 1][ncols - 1] = 1
                 else:
                     if obstacleGrid[i][j] == 1:
-                        obstacleGrid[i][j] = -1
+                        obstacleGrid[i][j] = 0
                     else:
                         from_right = 0
                         if j+1 < ncols and obstacleGrid[i][j+1] != -1:
@@ -25,7 +25,6 @@ class Solution:
                                 from_left = obstacleGrid[i+1][j]
                         
                         obstacleGrid[i][j] += from_right + from_left
-                    #print(obstacleGrid)
         
         
-        return obstacleGrid[0][0] if obstacleGrid[0][0] > 0 else 0
+        return obstacleGrid[0][0]
