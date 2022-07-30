@@ -12,7 +12,7 @@ class Solution:
         res = []
         
         for n in nums:
-            if n in freq_map and freq_map[n]:
+            if freq_map[n]:
                 freq_map[n] -= 1
                 res.append(n)
         
