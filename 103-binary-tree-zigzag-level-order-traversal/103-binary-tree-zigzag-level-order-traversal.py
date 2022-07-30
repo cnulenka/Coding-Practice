@@ -17,19 +17,19 @@ class Solution:
             level = 1
             while q:
                 n = len(q)
-                temp_res = []
+                temp_res = deque()
                 for i in range(n):
                     front = q.popleft()
-                    temp_res.append(front.val)
+                    if level%2 == 0:
+                        temp_res.appendleft(front.val)
+                    else:
+                        temp_res.append(front.val)
                     if front.left:
                         q.append(front.left)
                     if front.right:
                         q.append(front.right)
                         
-                if level%2 == 0:
-                    res.append(temp_res[::-1])
-                else:
-                    res.append(temp_res)
+                res.append(temp_res)
                 level += 1
         
         bfs(root)
