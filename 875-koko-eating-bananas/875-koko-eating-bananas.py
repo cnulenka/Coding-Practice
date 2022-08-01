@@ -4,7 +4,7 @@ class Solution:
         high = max(piles)
         res = high
         
-        while low <= high: # <= leads to TLE # tricky
+        while low <= high: 
             speed = low + (high-low)//2
             # print(low, speed, high)
             
@@ -17,7 +17,7 @@ class Solution:
                 res = min(speed, res)
                 # speed is too high, decrease speed
                 # we are aiming for the lowest successful
-                high = speed - 1 # since no strict decrease, hence <= can be an issue
+                high = speed - 1
             else:
                 # speed is too low, increase speed
                 low = speed + 1
