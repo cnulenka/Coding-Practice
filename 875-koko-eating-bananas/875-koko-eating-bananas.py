@@ -2,8 +2,9 @@ class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         low = 1
         high = max(piles)
+        res = high
         
-        while low < high: # <= leads to TLE # tricky
+        while low <= high: # <= leads to TLE # tricky
             speed = low + (high-low)//2
             # print(low, speed, high)
             
@@ -13,13 +14,14 @@ class Solution:
                 hours += math.ceil(pile/speed)
             
             if hours <= h:
+                res = min(speed, res)
                 # speed is too high, decrease speed
                 # we are aiming for the lowest successful
-                high = speed # since no strict decrease, hence <= can be an issue
+                high = speed - 1 # since no strict decrease, hence <= can be an issue
             else:
                 # speed is too low, increase speed
                 low = speed + 1
         
-        return high
+        return res
         
         
