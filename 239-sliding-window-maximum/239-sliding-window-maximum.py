@@ -5,17 +5,14 @@ class Solution:
         q = deque()
         
         for i in range(n):
-            #print(q, i, k)
             while q and q[0] <= i - k:
                     q.popleft()
 
-            if not q:
-                q.append(i)
-            else:
-                while q and nums[i] >= nums[q[-1]]:
+            while q and nums[i] >= nums[q[-1]]:
                         q.pop()
-                q.append(i)
-            #print(q, i, k, "end")
+            
+            q.append(i)
+
             if i >= k - 1:
                 res.append(nums[q[0]])
         
