@@ -11,13 +11,12 @@ class Solution:
             for pile in piles:
                 hours += math.ceil(pile/speed)
             
-            if hours > h:
-                # speed is too low, increase speed
-                low = speed + 1
-            else:
+            if hours <= h:
                 # speed is too high, decrease speed
                 high = speed
-        
+            else:
+                # speed is too low, increase speed
+                low = speed + 1
         
         return high
         
