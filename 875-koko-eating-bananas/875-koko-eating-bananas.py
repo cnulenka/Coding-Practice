@@ -5,6 +5,7 @@ class Solution:
         
         while low < high: # <= leads to TLE # tricky
             speed = low + (high-low)//2
+            # print(low, speed, high)
             
             hours = 0
             
@@ -13,7 +14,8 @@ class Solution:
             
             if hours <= h:
                 # speed is too high, decrease speed
-                high = speed
+                # we are aiming for the lowest successful
+                high = speed # since no strict decrease, hence <= can be an issue
             else:
                 # speed is too low, increase speed
                 low = speed + 1
