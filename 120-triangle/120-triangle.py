@@ -1,14 +1,10 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        def solve(row, col):
-            nonlocal dic
-            if (row, col) in dic:
-                return dic[(row,col)]
-            path = triangle[row][col]
-            if row < len(triangle) - 1:
-                dic[(row,col)] = path + min(solve(row+1, col), solve(row+1,col+1))
-                return dic[(row,col)]
-            return path
         
-        dic = {}
-        return solve(0,0)
+        nrows = len(triangle)
+        for i in range(nrows - 2, -1 , -1):
+            ncol = len(triangle[i])
+            for j in range(ncol):
+                triangle[i][j] += min(triangle[i+1][j], triangle[i+1][j+1])
+        
+        return triangle[0][0]
