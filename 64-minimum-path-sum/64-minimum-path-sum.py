@@ -3,14 +3,21 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
         
-        for i in range(m):
-            for j in range(n):
-                if i == 0 and j == 0:
-                    continue;
-                elif i == 0:
-                    grid[i][j] += grid[i][j-1]
-                elif j == 0:
-                    grid[i][j] += grid[i-1][j]
-                else:
-                    grid[i][j] += min(grid[i-1][j], grid[i][j-1]) 
-        return grid[m-1][n-1]
+        for i in range(m-1, -1, -1):
+            for j in range(n-1, -1 , -1):
+                if i == m-1 and j == n - 1:
+                    continue
+                
+                left = float('inf')
+                right = float('inf')
+                
+                if i + 1 < m:
+                    left = grid[i+1][j]
+                
+                if j + 1 < n:
+                    right  = grid[i][j+1]
+                    
+                grid[i][j] += min(left, right)
+        
+        
+        return grid[0][0]
