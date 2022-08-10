@@ -26,7 +26,7 @@ class Solution:
             
             # id start date is less than equal to curr_date
             # push the event's end date
-            while i < n and events[i][0] <= d: # push all events we can possibly attend
+            while i < n and events[i][0] == d: # push all events we can possibly attend
                 # push the end dates
                 heapq.heappush(pq, events[i][1])
                 i += 1
