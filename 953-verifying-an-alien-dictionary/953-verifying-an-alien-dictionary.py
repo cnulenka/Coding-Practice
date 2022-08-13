@@ -4,7 +4,11 @@ class Solution:
         
         for i,c in enumerate(order):
             order_map[c] = i
-            
+        
+        # only compare consecutive words
+        # if consecutive words are sorted
+        # array is sorted.
+        
         for i in range(len(words) - 1):
             
             # loop over ith word, if it has more chars we can check
