@@ -1,27 +1,31 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        open_seen, balance = 0,0
-        res1 = []
-        
-        for c in s:
-            if c == '(':
-                open_seen +=1
-                balance +=1
-            elif c == ')':
-                if balance == 0:
-                    continue
-                balance -= 1
-            res1.append(c)
         
         res = []
-        valid_open = open_seen - balance
-        for c in res1:
-            if c == '(':
-                if valid_open == 0:
+        stack = []
+        
+        for c in s:
+            if c == "(":
+                res.append(c)
+                stack.append(c)
+            elif c == ')':
+                if stack and stack[-1] == "(":
+                    res.append(c)
+                    stack.pop()
+            else:
+                res.append(c)
+        
+        res2 = deque()
+        n = len(res)
+        
+        for i in range(n -1, -1, -1):
+                if stack and res[i] == stack[-1]:
+                    stack.pop()
                     continue
                 else:
-                    valid_open -= 1 
-            res.append(c)
+                    res2.appendleft(res[i])
         
-        return res
-                
+        return list(res2)
+            
+            
+        
