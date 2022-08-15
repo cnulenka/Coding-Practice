@@ -8,6 +8,7 @@ class Solution:
         
         for i,n in enumerate(nums):
             
+            # summ modulo k
             summ = (summ + n) % k
                 
             if summ not in dp:
