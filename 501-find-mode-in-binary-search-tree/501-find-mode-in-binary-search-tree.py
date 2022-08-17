@@ -30,6 +30,7 @@ class Solution:
             elif curr_count > max_count:
                 res = [root.val]
                 max_count = curr_count
+                # curr_count = 0 # wrong
             
             prev = root.val
             
