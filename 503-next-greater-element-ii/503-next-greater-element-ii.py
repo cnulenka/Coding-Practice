@@ -8,16 +8,11 @@ class Solution:
         for i in range(2*n):
             
             k = i%n
-            #if stack:
-                #print(stack[-1], k, nums[stack[-1]] , nums[k])
             while stack and nums[stack[-1]] < nums[k]:
-                #print(stack[-1], k, nums[stack[-1]] , nums[k])
                 top = stack.pop()
                 res[top] = nums[k]
             
             stack.append(k)
-            #print(k, stack)
-            #print("-------------------")
         
         return res
                     
