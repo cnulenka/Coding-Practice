@@ -7,20 +7,16 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        def inorder(root):
-            nonlocal prev
+        
+        def helper(root, mini, maxi):
+            
             if not root:
                 return True
-            
-            if not inorder(root.left):
+
+            if root.val <= mini or root.val >= maxi:
                 return False
-            
-            if root.val <= prev:
-                return False
-            
-            prev = root.val
-            
-            return inorder(root.right)
+
+            return helper(root.left, mini, root.val) and helper(root.right, root.val, maxi)
         
-        prev = float('-inf')
-        return inorder(root)
+        
+        return helper(root, float('-inf'), float('inf'))
