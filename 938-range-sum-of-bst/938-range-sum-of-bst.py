@@ -19,10 +19,10 @@ class Solution:
             if low <= root.val  and root.val <= high:
                 summ += root.val
             
-            if root.left:
+            if root.left and low < root.val:
                 getSum(root.left)
             
-            if root.right:
+            if root.right and high > root.val:
                 getSum(root.right)
         
         getSum(root)
