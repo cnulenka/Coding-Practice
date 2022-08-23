@@ -13,8 +13,8 @@ class Solution:
         
         while left <= right:
             # process the smaller height first
-            if height[left] > height[right]:
-            # if left_max > right_max:
+            # if height[left] > height[right]:
+            if left_max > right_max:
                 # process right
                 right_max = max(right_max, height[right])
                 water += right_max - height[right]
