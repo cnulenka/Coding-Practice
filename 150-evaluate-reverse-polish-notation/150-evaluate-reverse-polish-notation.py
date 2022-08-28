@@ -9,12 +9,9 @@ class Solution:
             if tokens[i] not in ['+', '*', '-', '/']:
                 stack.append(tokens[i])
             else:
-                #print(stack)
                 right = stack.pop()
                 left = stack.pop()
-                #print(stack)
                 res = eval(left + tokens[i] + right)
-                #print(res)
                 stack.append(str(int(res)))
             
             i += 1
