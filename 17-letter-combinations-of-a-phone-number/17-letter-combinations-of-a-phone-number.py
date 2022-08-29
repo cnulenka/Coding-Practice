@@ -20,19 +20,17 @@ class Solution:
         if not digits:
             return res
         
-        def computeCombinations(new_str, id):
-            nonlocal digits, res
-            #print(new_str, id)
+        def combinations(curr_str, ind):
             
-            if id == len(digits):
-                res.append(new_str)
+            if ind == len(digits):
+                res.append(str(curr_str))
                 return
             
-            chars = self.getDigitToCharsMap(digits[id])
+            chars = self.getDigitToCharsMap(digits[ind])
             
-            for i in range(len(chars)):
-                computeCombinations(new_str+chars[i], id+1)
+            for char in chars:
+                combinations(curr_str+char, ind+1)
         
-        computeCombinations("", 0)
         
+        combinations("", 0)
         return res
