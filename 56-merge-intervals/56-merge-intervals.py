@@ -6,6 +6,7 @@ class Solution:
         
         for i in range(len(intervals)):
             if res[-1][1] >= intervals[i][0]:
+                # trick take max of both ends
                 res[-1][1] = max(res[-1][1],intervals[i][1])
             else:
                 res.append(intervals[i])
