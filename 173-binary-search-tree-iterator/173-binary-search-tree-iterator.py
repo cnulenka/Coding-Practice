@@ -17,10 +17,9 @@ class BSTIterator:
 
     def next(self) -> int:
         top = self.stack.pop()
-        val = top.val
         if top.right:
             self.process_node(top.right)
-        return val 
+        return top.val 
 
     def hasNext(self) -> bool:
         return len(self.stack)
