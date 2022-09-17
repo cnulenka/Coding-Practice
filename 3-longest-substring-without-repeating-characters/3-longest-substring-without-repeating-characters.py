@@ -5,17 +5,16 @@ class Solution:
         r = 0
         n = len(s)
         dp = {}
-        res = 0
+        max_length = 0
         
         for r in range(n):
-            # print(dp)
             if s[r] in dp and dp[s[r]] >= 0:
                 while l <= dp[s[r]]:
                     dp[s[l]] = -1
                     l+=1
                 
-            res = max(res, r-l+1)
-            # print(l, r, res)
+            max_length = max(max_length, r-l+1)
+
             dp[s[r]] = r
             
-        return res
+        return max_length
