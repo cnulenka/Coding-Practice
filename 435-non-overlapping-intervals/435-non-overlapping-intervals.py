@@ -7,6 +7,9 @@ class Solution:
         
         for i in range(1, len(intervals)):
             if intervals[prev][1] > intervals[i][0]:
+                # trick
+                # which ever has longer ending we remove
+                # it
                 if intervals[prev][1] > intervals[i][1]:
                     prev=i
                 remove += 1
