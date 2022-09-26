@@ -10,6 +10,11 @@ class Solution:
         
         while i<n:
             #print(i, stack)
+            # increasing stack
+            # pop if u get someone smaller
+            # thats the end of rectangle with stack[-1] height
+            # so u get left end and right end
+            # get the width and calculate the area
             while stack[-1] !=-1 and heights[stack[-1]] >= heights[i]:
                 #print(stack)
                 curr_height = heights[stack.pop()]
@@ -24,6 +29,7 @@ class Solution:
         while stack[-1] !=-1:
             #print(stack)
             curr_height = heights[stack.pop()]
+            # here N - 1 not i - 1
             curr_width = n - 1 - stack[-1]
             area =  curr_height * curr_width
             #print(area)
