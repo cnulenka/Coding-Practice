@@ -22,6 +22,3 @@ class Solution:
                 
         perm(0)
         return res
-                
-                
-                
