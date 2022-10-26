@@ -12,7 +12,7 @@ class Solution:
         
         def solve(node, curr_max, curr_min):
             
-            if not node:
+            if not node: # end of path 
                 return curr_max - curr_min
                 
             curr_max = max(node.val, curr_max)
