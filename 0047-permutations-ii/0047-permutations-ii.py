@@ -1,23 +1,26 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
-        res = []
+        res =[]
         n = len(nums)
         
-        def permute(perm, counter):
-            nonlocal res, n
-            
-            if len(perm) == n:
-                res.append(list(perm))
+        def permute(index):
+            nonlocal res
+            if index == n:
+                res.append(list(nums))
                 return
             
-            for num in counter:                
-                if counter[num]:
-                    counter[num] -= 1
-                    perm.append(num)
-                    permute(perm, counter)
-                    counter[num] += 1
-                    perm.pop()
+            s = set()
+            for i in range(index, n):
+                
+                # trick use set instead of i,i-1 check
+                # as nums r swaped
+                if nums[i] in s:
+                    continue
+                s.add(nums[i])
+                nums[i], nums[index] = nums[index], nums[i]
+                permute(index+1)
+                nums[index], nums[i] =  nums[i], nums[index]                
         
-        permute([], Counter(nums))
+        permute(0)
         return res
