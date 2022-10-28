@@ -1,22 +1,33 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        count_stack = [1]
-        char_stack = [s[0]]
+        char_stk = ['#']
+        num_stk = [0]
         
-        for i in range(1,len(s)):
-            #print(count_stack, char_stack)
-            if not char_stack or (char_stack and s[i] != char_stack[-1]):
-                count_stack.append(1)
-                char_stack.append(s[i])
-            elif count_stack[-1]+1 == k:
-                while count_stack[-1]:
-                    char_stack.pop()
-                    count_stack[-1] -= 1
-                count_stack.pop()
-            else:
-                count_stack[-1] += 1
-                char_stack.append(s[i])
-        
-        return "".join(char_stack)
+        for c in s:
+            
+            # check if last k-1 letters
+            # are same as curr char
+            
+            # print(char_stk, num_stk)
                 
-                    
+            if char_stk[-1] == c and num_stk[-1] == k - 1:
+
+                    pop_count = num_stk[-1]
+
+                    while pop_count:
+                        char_stk.pop()
+                        num_stk.pop()
+                        pop_count -= 1
+
+                    continue
+                
+            
+            if char_stk[-1] == c:
+                num_stk.append(num_stk[-1] + 1)
+            else:
+                num_stk.append(1)
+
+            char_stk.append(c)
+        
+        char_stk = char_stk[1:]
+        return "".join(char_stk)
