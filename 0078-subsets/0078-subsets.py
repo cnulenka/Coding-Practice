@@ -5,15 +5,16 @@ class Solution:
         n = len(nums)
         
         def solve(index, comb):
-            
+    
+            res.append(list(comb))
+        
             if index == n:
-                res.append(list(comb))
-                return
+                    return
             
-            comb.append(nums[index])
-            solve(index+1, comb)
-            comb.pop()
-            solve(index+1, comb)
+            for i in range(index, n):
+                comb.append(nums[i])
+                solve(i+1, comb)
+                comb.pop()
         
         solve(0,[])
         return res
