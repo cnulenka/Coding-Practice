@@ -7,8 +7,9 @@ class Solution:
             if t%60 == 0:
                 pairs += remainders[0]
             else:
-                pairs += remainders[60 - t%60]
-            
+                pairs += remainders[60-t%60]
+                
             remainders[t%60] += 1
+            
         
         return pairs
