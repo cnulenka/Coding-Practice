@@ -8,7 +8,7 @@ class Solution {
             int prevInclude = include;
             include = exclude + nums[i];
             exclude = Math.max(prevInclude, exclude);
-            maxAmount = Math.max(include, exclude);
+            maxAmount = Math.max(maxAmount,  Math.max(include, exclude));
         }
 
         return maxAmount;
