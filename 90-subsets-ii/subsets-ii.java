@@ -3,7 +3,7 @@ class Solution {
     private void getAllSubsets(int[] nums, int index, List<Integer> currList, List<List<Integer>> res) {
 
         // used in backtracking
-        res.add(new ArrayList<>(currList));
+        res.add(new ArrayList<>(currList)); // this adds the N factor in N * 2^N
         if(index == nums.length) {
             return;
         }
