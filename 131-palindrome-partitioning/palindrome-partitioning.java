@@ -1,6 +1,12 @@
 class Solution {
 
     List<List<String>> res;
+
+    /*
+    Hence, there could be 2^N possible substrings in the worst case. For each substring, 
+    it takes O(N) time to generate the substring and determine if it is a palindrome or not. 
+    This gives us a time complexity of O(N⋅2^N)
+    */
  
     public boolean isPalindrome(String s, int low, int high){
         while(low < high)
