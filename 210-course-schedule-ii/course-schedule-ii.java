@@ -1,65 +1,52 @@
 class Solution {
 
-  Map<Integer, List<Integer>> adjList;
-  int[] visited;
-  int[] processed;
-  List<Integer> topologicalOrder;
+    private Boolean isCyclic(int node, Map<Integer, 
+    List<Integer>> adjList, int[] visited, int[] processed, List<Integer> order) {
+        
+        visited[node] = 1;
 
-  private boolean isCyclic(int node) {
+        for(int neighbor: adjList.getOrDefault(node, new ArrayList<>())){
+            if(processed[neighbor] == 1){
+                continue;
+            }
 
-      if(visited[node] == 1){
-          return true;
-      }
-
-      visited[node] = 1;
-
-      for(int neigh: adjList.getOrDefault(node, new ArrayList<>())){
-          if(processed[neigh] == 1){
-              continue;
-          }
-
-            if(isCyclic(neigh)){
+            if(visited[neighbor] == 1 || isCyclic(neighbor, adjList, visited, processed, order)){
                 return true;
             }
-      }
+        }
 
-    visited[node] = 0;
-    processed[node] = 1;
-    topologicalOrder.add(node);
-    return false;
-  }
+        visited[node] = 0;
+        processed[node] = 1;
 
-  public int[] findOrder(int numCourses, int[][] prerequisites) {
-
-    adjList = new HashMap<>();
-    visited = new int[numCourses];
-    processed = new int[numCourses];
-    topologicalOrder = new ArrayList<>();
-
-    // Create the adjacency list representation of the graph
-    for (int i = 0; i < prerequisites.length; i++) {
-      int dest = prerequisites[i][0];
-      int src = prerequisites[i][1];
-      List<Integer> lst = adjList.getOrDefault(src, new ArrayList<Integer>());
-      lst.add(dest);
-      adjList.put(src, lst);
+        order.add(node);
+        return false;
     }
 
-    // If the node is unprocessed, then call dfs on it.
-    for (int i = 0; i < numCourses; i++) {
-      if (processed[i] == 0) {
-            if(isCyclic(i)){
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+        Map<Integer, List<Integer>> adjList = new HashMap<>();
+
+        for(int[] edge: prerequisites){
+            adjList.putIfAbsent(edge[0], new ArrayList<>());
+            adjList.get(edge[0]).add(edge[1]);
+        }
+
+        int[] visited = new int[numCourses];
+        int[] processed = new int[numCourses];
+        List<Integer> topologicalSortedOrder = new ArrayList<>();
+
+        for(int i = 0; i< numCourses; i++){
+            if(processed[i] == 0 && isCyclic(i, adjList, visited, processed, topologicalSortedOrder)){
                 return new int[0];
             }
-      }
-    }
+        }
 
-    int[] order;
-    order = new int[numCourses];
-    for (int i = 0; i < numCourses; i++) {
-    order[i] = topologicalOrder.get(numCourses - i - 1);
-    }
+        int[] order;
+        order = new int[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            order[i] = topologicalSortedOrder.get(i);
+        }
 
-    return order;
-  }
+        return order;
+    }
 }
