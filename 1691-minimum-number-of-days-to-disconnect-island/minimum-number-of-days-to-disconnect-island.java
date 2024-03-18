@@ -1,6 +1,11 @@
 class Solution {
     public int minDays(int[][] grid) {
         
+        // if you look at any corner 1, it is surrounded
+        // by water on 2 sides, land on 2 side. maximum if u remove
+        // 2 islands then its disconnected hence answer is
+        // either 0, 1, or 2
+
         int m=grid.length,n=grid[0].length;
         boolean visited[][]=new boolean[m][n];
         int islandCount=0;
