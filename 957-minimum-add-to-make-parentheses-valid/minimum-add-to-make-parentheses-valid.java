@@ -10,6 +10,8 @@ class Solution {
             }
         }
 
+        // ans : num of open required i.e. num of extra close
+        // bal : num of close required i.e. num of extra open
         return ans + bal;
     }
 }
